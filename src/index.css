@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* fonts */
+@font-face {
+  font-family: "font-yekanbakh";
+  src: url("./assets/fonts/YekanBakh/YekanBakh-Thin.woff2");
+  weight: "100";
+  style: "normal";
+}
+
+@font-face {
+  font-family: "font-yekanbakh";
+  src: url("./assets/fonts/YekanBakh/YekanBakh-Light.woff2");
+  weight: "300";
+  style: "normal";
+}
+
+@font-face {
+  font-family: "font-yekanbakh";
+  src: url("./assets/fonts/YekanBakh/YekanBakh-Regular.woff2");
+  weight: "400";
+  style: "normal";
+}
+
+@font-face {
+  font-family: "font-yekanbakh";
+  src: url("./assets/fonts/YekanBakh/YekanBakh-SemiBold.woff2");
+  weight: "600";
+  style: "normal";
+}
+
+@font-face {
+  font-family: "font-yekanbakh";
+  src: url("./assets/fonts/YekanBakh/YekanBakh-Bold.woff2");
+  weight: "700";
+  style: "normal";
+}
+
+body {
+  font-family: "font-yekanbakh";
+  direction: rtl;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
