@@ -1,6 +1,8 @@
 import HeroSection from "../hero-section/HeroSection";
 import { TbLogin2 } from "react-icons/tb";
 import { Link as ScrollLink,} from 'react-scroll';
+import CustomButton from "../custumbutton/CustomButoon";
+import { useEffect, useState } from "react";
 const Menu = [
   { title: "صفحه ی اصلی" },
   { title: "ویژگی ها" },
@@ -12,9 +14,26 @@ const Menu = [
 ];
 
 const Header = () => {
+  const [scrolled, setScrolled] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY > 50) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="bg-purple h-[500px] rounded-b-[50px]">
-      <div className="grow py-3  rounded-xl m-auto bg-gray mx-20 mt-10 relative">
+    <div className="bg-purple h-auto pb-40  rounded-b-[50px]">
+      <header className={`grow py-3  rounded-xl  bg-gray  fixed top-0 right-0 left-0 mt-10 mx-20 z-50 border border-grayDark transition-colors duration-300 ${scrolled ? 'bg-grayDark shadow-lg shadow-gray' : 'bg-gray'}`}>
         <div className="flex items-center  justify-between px-10">
           <span className="app-brand-logo demo">
             <svg
@@ -60,19 +79,19 @@ const Header = () => {
                 smooth={true}
                 duration={1500}
                 offset={-120}
+                className="cursor-pointer"
               >
-                <li key={index} className="text-grayLight">
+                <li key={index} className="text-grayLight cursor-pointer">
                   {item.title}
                 </li>
               </ScrollLink>
             ))}
           </ul>
-          <div className="flex gap-1 items-center bg-purpleLight rounded-lg px-4 py-2 boxShadow">
-            <TbLogin2 size={22} color="#fff" />
-            <button className="text-white">ثبت نام / واردشدن</button>
-          </div>
+          <CustomButton size="large" icon={TbLogin2} className="px-4 boxShadow">
+            ثبت نام / واردشدن
+          </CustomButton>
         </div>
-      </div>
+      </header>
       <HeroSection />
     </div>
   );
