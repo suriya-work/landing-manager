@@ -49,3 +49,7 @@ body {
 .boxShadow{
  box-shadow:  0 .125rem .375rem 0 rgba(115, 103, 240, .3);
 }
+
+.heroTitle {
+  background: linear-gradient(to right, #28c76f 0%, #5a4aff 47.92%, #ff3739 100%);
+}
