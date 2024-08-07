@@ -45,3 +45,7 @@ body {
   margin: 0;
   box-sizing: border-box;
 }
+
+.boxShadow{
+ box-shadow:  0 .125rem .375rem 0 rgba(115, 103, 240, .3);
+}
