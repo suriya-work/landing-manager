@@ -2,7 +2,8 @@ declare module 'react-scroll' {
     import * as React from 'react';
 
     export interface LinkProps {
-        // href: string;
+        href: string;
+        to?: string;
         spy?: boolean;
         smooth?: boolean;
         offset?: number;
@@ -10,6 +11,7 @@ declare module 'react-scroll' {
         isDynamic?: boolean;
         onSetActive?: () => void;
         onSetInactive?: () => void;
+        onClick?: () => void;
         ignoreCancelEvents?: boolean;
         delay?: number;
         href?: string;
