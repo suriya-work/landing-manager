@@ -1,16 +1,12 @@
-import Features from "./components/features/Features";
-import Footer from "./components/footer/Footer";
-import Header from "./components/header/Header";
-const App = () => {
+import { RouterProvider } from "react-router-dom";
+import router from "./routes/router";
+
+function App() {
   return (
-    <div className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-bgColor">
-      <Header />
-      <main >
-        <Features />
-      </main>
-      <Footer />
+    <div>
+      <RouterProvider router={router} />
     </div>
   );
-};
+}
 
 export default App;
