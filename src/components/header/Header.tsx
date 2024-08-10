@@ -3,19 +3,34 @@ import { TbLogin2 } from "react-icons/tb";
 import { Link as ScrollLink } from "react-scroll";
 import CustomButton from "../custumbutton/CustomButoon";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-const Menu = [
+import { cloneElement, ReactElement, useEffect, useState } from "react";
+import { MdKeyboardArrowDown } from "react-icons/md";
+import CategoriesPage from "../../pages/categoripage/CategoriesPage";
+
+type MenuItem = {
+  title: string;
+  href: string;
+  url?: string;
+  icon?: ReactElement;
+};
+const Menu: MenuItem[] = [
   { title: "صفحه ی اصلی", href: "#", url: "#home" },
   { title: "ویژگی ها", href: "#", url: "#features" },
   { title: "تیم", href: "#" },
   { title: "پرسش و پاسخ", href: "#" },
   { title: "ارتباط با ما", href: "#" },
-  { title: "صفحات", href: "#" },
+  {
+    title: "صفحات",
+    href: "#",
+    icon: <MdKeyboardArrowDown color="#cfcde4" size={22} />,
+  },
   { title: "ادمین", href: "#" },
 ];
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  // const [hovered, setHovered] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -59,11 +74,16 @@ const Header = () => {
                       navigate(item.href);
                     }
                   }}
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
                 >
                   <li
-                    className={`text-grayLight cursor-pointer ${isActive && "text-purpleLight"}`}
+                    className={` text-grayLight cursor-pointer hover:text-purpleLight flex items-center gap-1  duration-500 ${isActive && "text-purpleLight"}`}
+                    // onMouseEnter={() => setHovered(true)}
+                    // onMouseLeave={() => setHovered(false)}
                   >
                     {item.title}
+                    {item.icon}
                   </li>
                 </ScrollLink>
               );
@@ -73,6 +93,7 @@ const Header = () => {
             ثبت نام / واردشدن
           </CustomButton>
         </div>
+        {hoveredIndex === 5 && <CategoriesPage />}
       </header>
       <HeroSection />
     </div>
