@@ -1,20 +1,23 @@
 import HeroSection from "../hero-section/HeroSection";
 import { TbLogin2 } from "react-icons/tb";
-import { Link as ScrollLink,} from 'react-scroll';
+import { Link as ScrollLink } from "react-scroll";
 import CustomButton from "../custumbutton/CustomButoon";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 const Menu = [
-  { title: "صفحه ی اصلی" },
-  { title: "ویژگی ها" },
-  { title: "تیم" },
-  { title: "پرسش و پاسخ" },
-  { title: "ارتباط با ما" },
-  { title: "صفحات" },
-  { title: "ادمین" },
+  { title: "صفحه ی اصلی", href: "#", url: "#home" },
+  { title: "ویژگی ها", href: "#", url: "#features" },
+  { title: "تیم", href: "#" },
+  { title: "پرسش و پاسخ", href: "#" },
+  { title: "ارتباط با ما", href: "#" },
+  { title: "صفحات", href: "#" },
+  { title: "ادمین", href: "#" },
 ];
-
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleScroll = () => {
     if (window.scrollY > 50) {
@@ -25,67 +28,46 @@ const Header = () => {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
     <div className="bg-purple h-auto pb-40  rounded-b-[50px]">
-      <header className={`grow py-3  rounded-xl  bg-gray  fixed top-0 right-0 left-0 mt-10 mx-20 z-50 border border-grayDark transition-colors duration-300 ${scrolled ? 'bg-grayDark shadow-lg shadow-gray' : 'bg-gray'}`}>
+      <header
+        className={`grow py-3  rounded-xl  bg-gray  fixed top-0 right-0 left-0 mt-10 mx-20 z-50 border border-grayDark transition-colors duration-300 ${scrolled ? "bg-grayDark shadow-lg shadow-gray" : "bg-gray"}`}
+      >
         <div className="flex items-center  justify-between px-10">
-          <span className="app-brand-logo demo">
-            <svg
-              width="32"
-              height="22"
-              viewBox="0 0 32 22"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M0.00172773 0V6.85398C0.00172773 6.85398 -0.133178 9.01207 1.98092 10.8388L13.6912 21.9964L19.7809 21.9181L18.8042 9.88248L16.4951 7.17289L9.23799 0H0.00172773Z"
-                fill="#7367F0"
-              ></path>
-              <path
-                opacity="0.06"
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M7.69824 16.4364L12.5199 3.23696L16.5541 7.25596L7.69824 16.4364Z"
-                fill="#161616"
-              ></path>
-              <path
-                opacity="0.06"
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M8.07751 15.9175L13.9419 4.63989L16.5849 7.28475L8.07751 15.9175Z"
-                fill="#161616"
-              ></path>
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M7.77295 16.3566L23.6563 0H32V6.88383C32 6.88383 31.8262 9.17836 30.6591 10.4057L19.7824 22H13.6938L7.77295 16.3566Z"
-                fill="#7367F0"
-              ></path>
-            </svg>
-          </span>
+          <span className="bg-purpleLight w-7 h-7 rounded-full"></span>
           <ul className="flex items-center gap-10">
-            {Menu.map((item, index) => (
-              <ScrollLink
-                // key={item.id}
-                // href={item}
-                smooth={true}
-                duration={1500}
-                offset={-120}
-                className="cursor-pointer"
-              >
-                <li key={index} className="text-grayLight cursor-pointer">
-                  {item.title}
-                </li>
-              </ScrollLink>
-            ))}
+            {Menu.map((item, index) => {
+              const isActive =
+                index === activeIndex || location.pathname === item.href;
+              return (
+                <ScrollLink
+                  key={index}
+                  to={item.url}
+                  smooth={true}
+                  duration={1500}
+                  offset={-120}
+                  className="cursor-pointer"
+                  onClick={() => {
+                    setActiveIndex(index);
+                    if (item.href) {
+                      navigate(item.href);
+                    }
+                  }}
+                >
+                  <li
+                    className={`text-grayLight cursor-pointer ${isActive && "text-purpleLight"}`}
+                  >
+                    {item.title}
+                  </li>
+                </ScrollLink>
+              );
+            })}
           </ul>
           <CustomButton size="large" icon={TbLogin2} className="px-4 boxShadow">
             ثبت نام / واردشدن
