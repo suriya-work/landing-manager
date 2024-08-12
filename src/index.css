@@ -6,15 +6,17 @@
 @font-face {
   font-family: "font-yekanbakh";
   src: url("./assets/fonts/YekanBakh/YekanBakh-Thin.woff2");
-  weight: "100";
-  style: "normal";
+  /* weight: "100"; */
+  font-weight: '100';
+  /* style: "normal"; */
+  font-style: 'normal';
 }
 
 @font-face {
   font-family: "font-yekanbakh";
   src: url("./assets/fonts/YekanBakh/YekanBakh-Light.woff2");
-  weight: "300";
-  style: "normal";
+  font-weight: '300';
+  font-style: 'normal';
 }
 
 @font-face {
