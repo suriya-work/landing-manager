@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ReactElement, useEffect, useState, useRef } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import CategoriesPage from "../../pages/categoripage/CategoriesPage";
+import { Hamburger } from "./HamburgerMenu";
 
 type MenuItem = {
   title: string;
@@ -22,7 +23,7 @@ const Menu: MenuItem[] = [
   {
     title: "صفحات",
     href: "#",
-    // icon: <MdKeyboardArrowDown color="#cfcde4" size={22} />,
+    icon: <MdKeyboardArrowDown size={22} />,
   },
   { title: "ادمین", href: "#" },
 ];
@@ -70,13 +71,16 @@ const Header = () => {
   return (
     <div className="bg-purple h-auto pb-40 rounded-b-[50px]">
       <header
-        className={`grow py-3 rounded-xl bg-gray fixed top-0 right-0 left-0 mt-10 mx-20 z-50 border border-grayDark transition-colors duration-300 ${
+        className={`grow py-3 rounded-xl  md:w-[90%] md:mx-24 mx-5  bg-gray fixed top-0 right-0 left-0 mt-10  z-50 border border-grayDark transition-colors duration-300 ${
           scrolled ? "bg-grayDark shadow-lg shadow-gray" : "bg-gray"
         }`}
       >
-        <div className="flex items-center justify-between px-10">
+        <div className="flex items-center justify-between md:px-10 px-4">
+          <div className="lg:hidden">
+            <Hamburger Menu={Menu} />
+          </div>
           <span className="bg-purpleLight w-7 h-7 rounded-full"></span>
-          <ul className="flex items-center gap-10">
+          <ul className="lg:flex hidden items-center gap-10">
             {Menu.map((item, index) => {
               const isActive =
                 index === activeIndex || location.pathname === item.href;
@@ -98,15 +102,13 @@ const Header = () => {
                   onMouseLeave={handleMouseLeave}
                 >
                   <li
-                    className={`group text-grayLight cursor-pointer hover:text-purpleLight flex items-center gap-1 duration-500 ${
+                    className={`text-grayLight cursor-pointer  hover:text-purpleLight flex items-center gap-1 duration-500 ${
                       isActive && "text-purpleLight"
                     }`}
                   >
                     {item.title}
-                    {index === 5 && (
-                      <MdKeyboardArrowDown color="#cfcde4" size={22} />
-                    )}
-                    {/* {item.icon} */}
+                   
+                    {item.icon}
                   </li>
                 </ScrollLink>
               );
