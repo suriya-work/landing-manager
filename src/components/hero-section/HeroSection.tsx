@@ -50,7 +50,7 @@ const HeroSection = () => {
           یک داشبورد برای مدیریت <br />
           همه مشاغل شما
         </h2>
-        <p className="text-sm text-grayLight">
+        <p className="text-sm text-grayLight text-center">
           قالب مدیریت آماده تولید و استفاده آسان برای قابلیت اطمینان و شخصی سازی
         </p>
         <CustomButton size="large" className="px-8 py-3  boxShadow">
