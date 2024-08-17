@@ -11,7 +11,8 @@ export default {
       colors: {
         bgColor: '#2f3349',
         purple: '#1e2130',
-        purpleLight:'#685dd8',
+        purpleLight: '#685dd8',
+        pupleDark: '#3a3b64',
         gray: '#25273a',
         grayLight: '#cfcde4',
         grayDark:'#2f3349',
